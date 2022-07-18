@@ -1,0 +1,13 @@
+package com.shoppingcart.shoppingcart.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class SigninResponseDto {
+    private String status;
+    private String message;
+}
