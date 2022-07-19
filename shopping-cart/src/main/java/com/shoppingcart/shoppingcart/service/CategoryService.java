@@ -9,6 +9,7 @@ import com.shoppingcart.shoppingcart.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,33 +28,29 @@ public class CategoryService
     public List<Category> getAllCategory(){
         return categoryRepo.findAll();
     }
-    public List<List<String>>  getAllCategoryWithProducts(){
-        List<Category> categoryList=categoryRepo.findAll();
-        List<List<String>> result=null;
-        List<String> temp = null;
+    public String  getAllCategoryWithProducts(){
+       List<List<String>> result=null;
+       List<String> temp=null;
+       List<Product> productList=productRepo.findAll();
+       for(Product product:productList)
+       {
+           String categoryName=product.getCategory().getCategoryName();
+           System.out.println(categoryName);
+           int id=product.getCategory().getId();
+//           Category category=product.getCategory();
+//           temp.add(categoryName);
+           temp.add("Anshu");
+//           temp.add(String.valueOf(product.getId()));
+//           temp.add(product.getName());
+//           temp.add(String.valueOf(product.getQuantity()));
+//           temp.add(String.valueOf(product.getPrice()));
+           System.out.println(product.getId()+ " "+product.getName());
+           result.add(id,temp);
+           temp.clear();
 
-        for(Category category:categoryList)
-        {
 
-            int id=category.getId();
-            temp.add(String.valueOf(id));
-
-            temp.add(category.getCategoryName());
-            List<Product> productlist= productRepo.findByCategoryId(id);
-            for(Product product: productlist)
-            {
-                temp.add(product.getName());
-                temp.add(product.getDescription());
-                temp.add(String.valueOf(product.getQuantity()));
-                temp.add(String.valueOf(product.getPrice()));
-                result.add(temp);
-                temp.clear();
-            }
-
-//            System.out.println("Category id :"+id+" "+product.getName()+" ");
-
-        }
-        return result;
+       }
+       return result;
     }
 
     public String  updateCategory(int categoryId, Category updateCategory) {

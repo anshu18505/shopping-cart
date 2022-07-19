@@ -16,8 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 
 @Entity
-@JsonInclude(value = JsonInclude.Include.NON_NULL)
-@Table(name = "categoryy")
+//@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@Table(name = "category")
 public class Category {
 
     @Id
@@ -27,8 +27,10 @@ public class Category {
     private @NotNull String categoryName;
     private @NotNull String description;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<Product> products;
+
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Product> products;
 
 
 }
