@@ -34,11 +34,11 @@ public class ProductController {
         List<ProductDto> productDtos =  productService.getAllProducts();
         return  productDtos;
     }
-    @GetMapping("/getByCategoryId/{category_id}")
-    public List<Product> getAllProducts(int category_id){
-        List<Product> products =  productService.getByCategoryId(category_id);
-        return  products;
-    }
+//    @GetMapping("/getByCategoryId/{category_id}")
+//    public List<Product> getAllProducts(int category_id){
+//        List<Product> products =  productService.getByCategoryId(category_id);
+//        return  products;
+//    }
 
     @PutMapping("/update/{productId}")
     public String updateProduct(@PathVariable("productId") int productId, @RequestBody ProductDto productDto) throws Exception {

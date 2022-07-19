@@ -28,29 +28,15 @@ public class CategoryService
     public List<Category> getAllCategory(){
         return categoryRepo.findAll();
     }
-    public String  getAllCategoryWithProducts(){
-       List<List<String>> result=null;
-       List<String> temp=null;
-       List<Product> productList=productRepo.findAll();
-       for(Product product:productList)
-       {
-           String categoryName=product.getCategory().getCategoryName();
-           System.out.println(categoryName);
-           int id=product.getCategory().getId();
-//           Category category=product.getCategory();
-//           temp.add(categoryName);
-           temp.add("Anshu");
-//           temp.add(String.valueOf(product.getId()));
-//           temp.add(product.getName());
-//           temp.add(String.valueOf(product.getQuantity()));
-//           temp.add(String.valueOf(product.getPrice()));
-           System.out.println(product.getId()+ " "+product.getName());
-           result.add(id,temp);
-           temp.clear();
+    public List<Product> getAllCategoryWithProducts(int category_id){
+
+//        System.out.println("B");
+        return findProductCategoryId(category_id);
+//        System.out.println("Anshu");
+//        System.out.println("Anshu2");
+//        return productList;
 
 
-       }
-       return result;
     }
 
     public String  updateCategory(int categoryId, Category updateCategory) {
@@ -66,7 +52,62 @@ public class CategoryService
         categoryRepo.delete(deleteCategory);
         return "Category id "+categoryId+" is deleted successfully";
     }
-//    public boolean findById(int categoryId) {
-//        return categoryRepo.findById(categoryId).isPresent();
+    public boolean findById(int categoryId) {
+        return categoryRepo.findById(categoryId).isPresent();
+    }
+
+    public List<Product> findProductCategoryId(int category_id)
+    {
+
+        List<Product> productList=productRepo.findAll();
+        System.out.print("D");
+        List<Product> result=new ArrayList<Product>();
+        System.out.print("E");
+        for(int i=0;i<productList.size();i++)
+        {
+            if(productList.get(i).getCategory().getId()==category_id) {
+                result.add(productList.get(i));
+            }
+            else
+                continue;
+        }
+        if(result.size()==0)
+            result.add(new Product());
+        System.out.print("F");
+        System.out.println("Hello adjkwbkfjbwdfjknwefonwe world");
+
+        return result;
+
+    }
+
+
+
+//    public List<String> findProductCategoryId(int category_id)
+//    {
+//
+//        List<Product> productList=productRepo.findAll();
+//        System.out.print("D");
+//        List<String> result=new ArrayList<String>();
+//        System.out.print("E");
+//        for(int i=0;i<productList.size();i++)
+//        {
+//            if(productList.get(i).getCategory().getId()==category_id) {
+//                result.add("Category Id : "+category_id+" ");
+//                result.add(productList.get(i).getName());
+//                result.add(String.valueOf(productList.get(i).getQuantity()));
+//                result.add(String.valueOf(productList.get(i).getPrice()));
+//                result.add(productList.get(i).getDescription());
+//
+//            }
+//            else
+//                continue;
+//        }
+//        if(result.size()==0)
+//            result.add("");
+//        System.out.print("F");
+//        System.out.println("Hello adjkwbkfjbwdfjknwefonwe world");
+//
+//        return result;
+//
 //    }
 }

@@ -1,6 +1,7 @@
 package com.shoppingcart.shoppingcart.controller;
 
 import com.shoppingcart.shoppingcart.model.Category;
+import com.shoppingcart.shoppingcart.model.Product;
 import com.shoppingcart.shoppingcart.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,9 +27,10 @@ public class CategoryController {
     }
 
     @GetMapping("/getAllCategoryItems")
-    public List<List<String>> getAllCategoryItems()
+    public List<Product> getAllCategoryItems(@RequestParam ("category_id") int category_id)
     {
-        return categoryService.getAllCategoryWithProducts();
+        System.out.println("A");
+        return categoryService.getAllCategoryWithProducts(category_id);
     }
 
     @PutMapping("/update/{categoryId}")

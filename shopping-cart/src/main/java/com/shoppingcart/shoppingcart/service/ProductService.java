@@ -33,11 +33,11 @@ public class ProductService {
         productRepo.save(product);
         return "Product added successfully";
     }
-    public List<Product> getByCategoryId(int id)
-    {
-        List<Product> productList= productRepo.findByCategoryId(id);
-        return productList;
-    }
+//    public List<Product> getByCategoryId(int id)
+//    {
+//        List<Product> productList= productRepo.(id);
+//        return productList;
+//    }
     public ProductDto getProduct(Product product)
     {
         ProductDto productDto=new ProductDto();
