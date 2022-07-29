@@ -63,7 +63,7 @@ public class CartService {
         double totalCost = 0;
         for (Cart cart : cartList) {
             CartItemDto cartItemDto = new CartItemDto(cart);
-            totalCost += cartItemDto.getTotal_quantity() * cart.getProduct().getPrice();
+            totalCost += cartItemDto.getQuantity() * cart.getProduct().getPrice();
 //            Product product=new Product(cart.getProduct().getId(),cart.getProduct().getName(),cart.getProduct().getQuantity(),cart.getProduct().getPrice(),cart.getProduct().getCategory().getCategoryName(), cart.getProduct().getCategory().getId(),cart.getProduct().getCategory().getDescription());
 //            cartItemDto.setProduct(cart.getProduct());
 //            cartItemDto.setTotal_quantity(cart.getQuantity());

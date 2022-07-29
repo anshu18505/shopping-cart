@@ -20,18 +20,15 @@ public class OrderController {
     @Autowired
     private UserService userService;
 
-//    @Autowired
-//    private UserRepo userRepo;
-
     @PostMapping("/add")
-    public void placeOrder(@RequestParam("userId") int userId) throws Exception {
+    public String placeOrder(@RequestParam("userId") int userId) throws Exception {
         Optional<User> optionalUser = userService.findById(userId);
         if (optionalUser.isEmpty()) {
             throw new Exception("User id is invalid");
         }
         User user = optionalUser.get();
         orderService.placeOrder(user);
-
+        return "Order placed successfully";
     }
 
     @GetMapping("/")

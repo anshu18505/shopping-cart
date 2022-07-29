@@ -4,8 +4,6 @@ import com.shoppingcart.shoppingcart.model.Cart;
 import com.shoppingcart.shoppingcart.model.Product;
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,12 +11,12 @@ import java.util.List;
 
 public class CartItemDto {
     private Integer id;
-    private Integer total_quantity;
+    private Integer quantity;
     private Product product;
 
     public CartItemDto(Cart cart) {
         this.id = cart.getId();
-        this.total_quantity = cart.getQuantity();
+        this.quantity = cart.getQuantity();
         this.setProduct(cart.getProduct());
 //        this.setProduct(cart.getProduct().getId(),cart.getProduct().getName(),cart.getProduct().getPrice(),cart.getProduct().getQuantity(),cart.getProduct().getDescription(),cart.getProduct().getCategory().getId(),cart.getProduct().getCategory().getDescription(),cart.getProduct().getCategory().getCategoryName());
     }
