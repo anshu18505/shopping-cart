@@ -1,5 +1,6 @@
 package com.shoppingcart.shoppingcart.service;
 
+import com.shoppingcart.shoppingcart.dto.AddToCartDto;
 import com.shoppingcart.shoppingcart.dto.ProductDto;
 import com.shoppingcart.shoppingcart.model.Category;
 import com.shoppingcart.shoppingcart.model.Product;
@@ -28,6 +29,7 @@ public class ProductService {
         product.setPrice(productDto.getPrice());
         product.setQuantity(productDto.getQuantity());
         product.setCategory(category);
+
 //        category.getProducts().add(product);
 //        categoryRepo.save(category);
         productRepo.save(product);
@@ -72,12 +74,36 @@ public class ProductService {
         productRepo.save(product);
         return "Update completed";
     }
+    
     public Product findById(Integer productId) throws Exception {
         Optional<Product> optionalProduct = productRepo.findById(productId);
         if (optionalProduct.isEmpty()) {
             throw new Exception("Invalid Product Id: " + productId);
         }
         return optionalProduct.get();
+    }
+
+
+    public boolean outOfStock(AddToCartDto addToCartDto) throws Exception{
+        Product product = findById(addToCartDto.getProductId());
+
+        if(product.getQuantity()==0)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean checkStockAvailability(AddToCartDto addToCartDto) throws Exception{
+        Product product = findById(addToCartDto.getProductId());
+        if(product.getQuantity()>addToCartDto.getQuantity())
+            return true;
+        else
+            return false;
+    }
+
+    public int getAvailableStock(AddToCartDto addToCartDto) throws Exception{
+        Product product = findById(addToCartDto.getProductId());
+        return product.getQuantity();
     }
 }
 

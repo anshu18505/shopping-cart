@@ -13,6 +13,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -56,5 +57,8 @@ public class UserService {
             e.printStackTrace();
         }
         return new SigninResponseDto("success","Logged in");
+    }
+    public Optional<User> findById(Integer userId) {
+        return userRepo.findById(userId);
     }
 }

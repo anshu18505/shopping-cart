@@ -26,11 +26,15 @@ public class CategoryController {
         return categoryService.getAllCategory();
     }
 
-    @GetMapping("/getAllCategoryItems")
-    public List<Product> getAllCategoryItems(@RequestParam ("category_id") int category_id)
-    {
+    @GetMapping("/getProductByCategoryId")
+    public List<Product> getAllCategoryItems(@RequestParam ("category_id") int category_id) throws Exception {
         System.out.println("A");
         return categoryService.getAllCategoryWithProducts(category_id);
+    }
+    @GetMapping("/getAllCategoryItems")
+    public List<Category> getAllCategoryItems() throws Exception {
+        System.out.println("new function");
+        return categoryService.findAllProductCategory();
     }
 
     @PutMapping("/update/{categoryId}")

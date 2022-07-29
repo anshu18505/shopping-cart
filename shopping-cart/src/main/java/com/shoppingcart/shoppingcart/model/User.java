@@ -1,12 +1,13 @@
 package com.shoppingcart.shoppingcart.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -21,6 +22,12 @@ public class User {
     private String last_name;
     private String email;
     private String password;
+
+//    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+//    @JsonIgnore
+//    private List<Cart> cart;
+
+
 
     public User(String first_name, String last_name, String email, String password) {
         this.first_name = first_name;
